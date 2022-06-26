@@ -1,0 +1,8 @@
+[ankeborg]
+knatte.nixnet.jke ansible_host=192.168.0.29
+fnatte.nixnet.jke ansible_host=192.168.0.24
+tjatte.nixnet.jke ansible_host=192.168.0.42
+joakim.nixnet.jke ansible_host=192.168.0.47
+
+[win10]
+win10-lab ansible_host=192.168.0.40

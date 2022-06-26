@@ -1,0 +1,13 @@
+- name: Testa import_tasks och include_tasks
+  hosts: localhost
+  tasks: 
+    - include_tasks: x.yml  # import_tasks fungerar
+      with_items: [1, 2, 3] # inte för loopar
+
+- name: Läsa taggar fungerar bara med import
+  hosts: localhost
+  vars:
+    - testar: hejsan
+  tasks:
+    - import_tasks: y.yml
+

@@ -1,0 +1,18 @@
+- name: Playbook för att demonstrera hanterare
+  hosts: tjatte.nixnet.jke
+  become: yes
+  tasks:
+    - name: Installera MariaDB
+      dnf:
+        name: mariadb-server
+        state: present
+        update_cache: yes
+      notify: Aktivera MariaDB
+
+  handlers:
+    - name: Aktivera MariaDB
+      systemd:
+        name: mariadb
+        state: started
+        enabled: yes
+

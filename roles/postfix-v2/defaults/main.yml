@@ -1,0 +1,7 @@
+mail_hostname: vm.nixnet.jke
+canonical_name: vm.nixnet.example.tld
+relay_host: email-smtp.eu-west-1.amazonaws.com
+relay_port: 465
+relay_user: 
+relay_password: 
+

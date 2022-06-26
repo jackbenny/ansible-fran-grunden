@@ -1,0 +1,29 @@
+biff = no
+append_dot_mydomain = no
+compatibility_level = 2
+myhostname = {{ mail_hostname }}
+alias_maps = hash:/etc/aliases
+alias_database = hash:/etc/aliases
+myorigin = {{ mail_hostname }}
+mydestination = $myhostname, {{ mail_hostname }}, localhost
+relayhost = [{{ relay_host }}]:{{ relay_port }}
+mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
+mailbox_size_limit = 0
+recipient_delimiter = +
+inet_interfaces = localhost
+inet_protocols = all
+
+# enable SASL authentication
+smtp_sasl_auth_enable = yes
+smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
+smtp_sasl_security_options = noanonymous
+smtp_sasl_tls_security_options = noanonymous
+
+# Enable STARTTLS encryption
+smtp_use_tls = yes
+smtp_tls_wrappermode = yes
+smtp_tls_security_level = encrypt
+
+# Setup sender canonical mapping
+sender_canonical_maps = hash:/etc/postfix/sender_canonical
+

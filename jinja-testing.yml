@@ -1,0 +1,20 @@
+- hosts: localhost
+  vars:
+    text: Hej alla glada
+    num1: 5
+    num2: 10
+
+  tasks:
+    - name: Skriv ut variablerna
+      debug:
+        msg: "Texten är: {{ text }}. Talen är {{ num1 }}
+          och {{ num2 }}."
+
+    - name: Omvandla till versaler
+      debug:
+        msg: "{{ text|upper }}"
+
+    - name: Byt ut text och gör allt till gemener
+      debug:
+        msg: "{{ text|replace('glada','utvecklare')|lower }}"
+

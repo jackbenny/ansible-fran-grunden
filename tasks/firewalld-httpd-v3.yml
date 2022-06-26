@@ -1,0 +1,9 @@
+- name: Öppna brandväggen i RedHat
+  tags:
+    - firewall
+  firewalld:
+    service: http
+    permanent: yes
+    immediate: yes
+    state: enabled
+

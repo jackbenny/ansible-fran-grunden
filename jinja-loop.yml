@@ -1,0 +1,14 @@
+- hosts: localhost
+  vars:
+    namn:
+      - Knatte
+      - Tjatte
+      - Fnatte
+      - Joakim
+
+  tasks:
+    - name: Loop-test
+      template:
+        src: testfil_loop.j2
+        dest: testfil_loop.txt
+

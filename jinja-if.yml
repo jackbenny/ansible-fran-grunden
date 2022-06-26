@@ -1,0 +1,14 @@
+- hosts: localhost
+  vars:
+    namn:
+      - Knatte
+      - Tjatte
+      - Fnatte
+      - Joakim
+
+  tasks:
+  - name: If-test
+    template:
+      src: testfil_if.j2
+      dest: testfil_if.txt
+

@@ -1,0 +1,21 @@
+- hosts: ankeborg
+  become: true
+  vars:
+    timezone: Europe/Stockholm
+
+  collections: 
+    - jackbenny.demo
+
+  tasks:
+    - name: Test my dummy module
+      dummy:
+        number: 51
+      register: the_num
+
+    - name: Print the return value
+      debug:
+        msg: "{{ the_num }}"
+
+  roles:
+    - base
+

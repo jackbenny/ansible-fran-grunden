@@ -1,0 +1,8 @@
+- name: Kopiera PHP-filen till värdarna
+  tags:
+    - index
+    - copy
+  copy:
+    src: ../files/index.php
+    dest: /var/www/html/index.php
+

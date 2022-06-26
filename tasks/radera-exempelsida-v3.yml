@@ -1,0 +1,8 @@
+- name: Ta bort eventuell exempelsida
+  tags:
+    - index
+    - remove
+  file:
+    path: /var/www/html/index.html
+    state: absent
+

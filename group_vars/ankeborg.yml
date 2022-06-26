@@ -1,0 +1,3 @@
+ansible_user: jake
+ansible_become_pass: peak-airspeed
+ansible_become_method: sudo

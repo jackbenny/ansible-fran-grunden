@@ -1,0 +1,6 @@
+- name: Copy alisases
+  copy:
+    src: aliases
+    dest: /etc/aliases
+  notify: Generate aliases
+

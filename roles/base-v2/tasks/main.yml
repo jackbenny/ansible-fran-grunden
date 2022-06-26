@@ -1,0 +1,13 @@
+- name: Install common tools
+  package:
+    name: "{{ item }}"
+  with_items:
+    - curl
+    - gnupg
+    - vim
+    - ca-certificates
+
+- name: Set the timezone to Stockholm
+  timezone:
+    name: Europe/Stockholm
+

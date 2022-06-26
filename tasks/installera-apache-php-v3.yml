@@ -1,0 +1,34 @@
+- name: Installera Apache och PHP i Debian
+  tags:
+    - apache
+    - package
+  when: ansible_os_family == 'Debian'
+  apt:
+    update_cache: yes
+    name: "{{ item }}"
+    state: present
+    install_recommends: yes
+  with_items:
+    - apache2
+    - libapache2-mod-php
+  notify: 
+    - Ta bort eventuell exempelsida
+    - Aktivera Apache i Debian
+
+- name: Installera Apache och PHP i RedHat
+  tags:
+    - apache
+    - package
+  when: ansible_os_family == 'RedHat' 
+  dnf:
+    name:  "{{ item }}"
+    state: present
+    update_cache: yes
+    install_weak_deps: yes
+  with_items:
+    - httpd
+    - php
+  notify: 
+    - Ta bort eventuell exempelsida
+    - Aktivera Apache i RedHat
+    - Öppna brandväggen i RedHat

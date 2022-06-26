@@ -1,0 +1,8 @@
+- name: Anslut till webbservrarna
+  tags:
+    - connect
+  uri:
+    url: "http://{{ item }}"
+  with_items: "{{ groups[min_grupp] | map('extract', \
+    hostvars, ['ansible_host']) }}"
+

@@ -1,0 +1,9 @@
+- name: Update cache on Debian/Ubuntu
+  apt:
+    update_cache: yes
+  when: ansible_os_family == 'Debian'
+- name: Update cache on RedHat/CentOS/Fedora
+  dnf:
+    update_cache: yes
+  when: ansible_os_family == 'RedHat'
+

@@ -1,0 +1,6 @@
+- hosts: ankeborg
+  vars:
+    my_number: 45
+  roles:
+    - my_role 
+

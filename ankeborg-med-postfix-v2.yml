@@ -1,0 +1,21 @@
+- hosts: ankeborg
+  become: true
+  vars:
+    mail_hostname: "{{ inventory_hostname }}"
+    canonical_name: "{{ inventory_hostname_short }}.nixnet.\
+      example.tld"
+
+  pre_tasks:
+    - name: Update cache on Debian/Ubuntu
+      apt:
+        update_cache: yes
+      when: ansible_os_family == 'Debian'
+    - name: Update cache on RedHat/CentOS/Fedora
+      dnf:
+        update_cache: yes
+      when: ansible_os_family == 'RedHat'
+
+  roles:
+    - base
+    - postfix-v2
+

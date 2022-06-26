@@ -1,0 +1,15 @@
+- name: Check that a username and password is supplied
+  assert:
+    that:
+      - (relay_user is defined) and (relay_user is not none)
+      - (relay_password is defined) and
+          (relay_password is not none)
+    fail_msg: "'relay_user' and 'relay_password' must be set"
+    success_msg: "username and password for relay is set"
+
+- import_tasks: install-postfix.yml
+- import_tasks: configure-postfix.yml
+- import_tasks: copy-postfix-auth.yml
+- import_tasks: copy-aliases.yml
+- import_tasks: copy-sender-canonical.yml
+

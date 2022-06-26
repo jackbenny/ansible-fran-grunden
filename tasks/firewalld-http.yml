@@ -1,0 +1,10 @@
+- name: Öppna brandväggen i RedHat
+  tags:
+    - firewall
+  when: ansible_os_family == 'RedHat'
+  firewalld:
+    service: http
+    permanent: yes
+    immediate: yes
+    state: enabled
+

@@ -1,0 +1,7 @@
+- name: Copy Postfix authentication
+  template:
+    src: sasl_passwd.j2
+    dest: /etc/postfix/sasl_passwd
+    mode: 0600
+  notify: Generate SASL
+

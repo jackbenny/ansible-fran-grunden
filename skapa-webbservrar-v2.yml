@@ -1,0 +1,17 @@
+- name: Sätt upp en webbsida med PHP-stöd
+  become: true
+  hosts: ankeborg
+  tasks:
+    - import_tasks: tasks/installera-apache-php.yml
+    - import_tasks: tasks/aktivera-apache.yml
+    - import_tasks: tasks/firewalld-http.yml
+    - import_tasks: tasks/skapa-webbsida.yml
+
+- name: Testa webbservrarna
+  hosts: localhost
+  tasks:
+    - name: Anslut till servrarna
+      import_tasks: tasks/testa-webbservrarna.yml 
+      vars: 
+        min_grupp: ankeborg
+

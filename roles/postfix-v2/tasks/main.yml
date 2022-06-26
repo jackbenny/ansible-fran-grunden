@@ -1,0 +1,43 @@
+- name: Check that a username and password is supplied
+  assert:
+    that:
+      - (relay_user is defined) and (relay_user is not none)
+      - (relay_password is defined) and 
+          (relay_password is not none)
+    fail_msg: "'relay_user' and 'relay_password' must be set"
+    success_msg: "username and password for relay is set"
+
+- name: Install Postfix and s-nail
+  package:
+    state: present
+    name: "{{ item }}"
+  with_items:
+    - postfix
+    - s-nail
+  notify: Activate and restart Postfix
+
+- name: Configure Postfix
+  template:
+    src: main.cf.j2
+    dest: /etc/postfix/main cf
+  notify: Activate and restart Postfix
+
+- name: Copy Postfix authentication
+  template:
+    src: sasl_passwd.j2
+    dest: /etc/postfix/sasl_passwd
+    mode: 0600
+  notify: Generate SASL
+
+- name: Copy alisases
+  copy:
+    src: aliases
+    dest: /etc/aliases
+  notify: Generate aliases
+
+- name: Copy sender_canonical
+  template:
+    src: sender_canonical.j2
+    dest: /etc/postfix/sender_canonical
+  notify: Generate sender_canonical
+

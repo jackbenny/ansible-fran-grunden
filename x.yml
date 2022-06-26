@@ -1,0 +1,10 @@
+- name: Test av include_tasks
+  tags: x_test
+  command:
+    cmd: echo {{ item }}
+  register: utdata
+
+- name: Skriv ut resultatet
+  debug:
+    var: utdata.stdout_lines
+

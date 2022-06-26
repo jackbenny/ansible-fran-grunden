@@ -1,0 +1,9 @@
+- name: Install Postfix and s-nail
+  package:
+    state: present
+    name: "{{ item }}"
+  with_items:
+    - postfix
+    - s-nail
+  notify: Activate and restart Postfix
+

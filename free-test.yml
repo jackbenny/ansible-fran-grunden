@@ -1,0 +1,11 @@
+- hosts: all
+  strategy: free
+  tasks:
+    - name: Run whoami
+      command:
+        cmd: whoami
+
+    - name: Run uptime
+      command:
+        cmd: uptime
+

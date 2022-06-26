@@ -1,0 +1,67 @@
+- name: Sätt upp en webbsida med PHP-stöd
+  become: true
+  hosts: ankeborg
+  tasks:
+    - name: Installera Apache och PHP i Debian
+      when: ansible_os_family == 'Debian'
+      apt:
+        update_cache: yes
+        name: "{{ item }}"
+        state: present
+        install_recommends: yes
+      with_items:
+        - apache2
+        - libapache2-mod-php
+
+    - name: Installera Apache och PHP i RedHat
+      when: ansible_os_family == 'RedHat' 
+      dnf:
+        name:  "{{ item }}"
+        state: present
+        update_cache: yes
+        install_weak_deps: yes
+      with_items:
+        - httpd
+        - php
+
+    - name: Aktivera Apache i Debian
+      when: ansible_os_family == 'Debian'
+      systemd:
+        name: apache2
+        enabled: yes
+        state: started
+
+    - name: Aktivera Apache i RedHat
+      when: ansible_os_family == 'RedHat'
+      systemd:
+        name: httpd
+        enabled: yes
+        state: started
+
+    - name: Öppna brandväggen i RedHat
+      when: ansible_os_family == 'RedHat'
+      firewalld:
+        service: http
+        permanent: yes
+        immediate: yes
+        state: enabled
+
+    - name: Ta bort eventuell exempelsida
+      file:
+        path: /var/www/html/index.html
+        state: absent
+
+    - name: Kopiera PHP-filen till värdarna
+      copy:
+        src: index.php
+        dest: /var/www/html/index.php
+
+- name: Testa webbservrarna
+  hosts: localhost
+  tasks:
+    - name: Anslut till webbservrarna
+      uri:
+        url: "http://{{ item }}"
+      with_items: "{{ groups['ankeborg'] | map('extract', \
+        hostvars, ['ansible_host']) }}"
+

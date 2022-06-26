@@ -1,0 +1,9 @@
+- name: Extract test
+  hosts: localhost
+
+  tasks:
+  - name: Lista IP
+    debug:
+      msg: "{{ ['knatte.nixnet.jke'] | map('extract',
+        hostvars, ['ansible_host']) }}"
+

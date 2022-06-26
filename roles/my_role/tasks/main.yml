@@ -1,0 +1,4 @@
+- name: Testa vår egna modul
+  dummy:
+    number: "{{ my_number }}"
+

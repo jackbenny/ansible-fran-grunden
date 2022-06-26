@@ -1,0 +1,6 @@
+- name: Copy sender_canonical
+  template:
+    src: sender_canonical.j2
+    dest: /etc/postfix/sender_canonical
+  notify: Generate sender_canonical
+

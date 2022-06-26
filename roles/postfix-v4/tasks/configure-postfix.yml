@@ -1,0 +1,6 @@
+- name: Configure Postfix
+  template:
+    src: main.cf.j2
+    dest: /etc/postfix/main.cf
+  notify: Activate and restart Postfix
+

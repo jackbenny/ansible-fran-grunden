@@ -1,0 +1,41 @@
+- name: Map test
+  hosts: localhost
+  vars:
+    namn: [
+      {
+        "fornamn": "Knatte",
+        "efternamn": "Anka",
+        "tel": 07012345678,
+        "adress": {
+          "stad": "Ankeborg",
+          "gata": "Ankvägen 1"
+        }
+      },
+      {
+        "fornamn": "Joakim",
+        "efternamn": "von Anka",
+        "tel": 070987654321,
+        "adress": {
+          "stad": "Ankeborg",
+          "gata": "Pengavägen 1"
+        },
+      },
+      {
+        "fornamn": "Oppfinnar-Jocke",
+        "efternamn": "Johansson",
+        "tel": 070123123123,
+        "adress": {
+          "stad": "Ankeborg",
+          "gata": "Laboratorievägen 1"
+        },
+      }]
+
+  tasks:
+  - name: Lista alla gator
+    debug:
+      msg="{{ namn | map(attribute='fornamn') }}"
+  - name: Lista alla städerna
+    debug:
+      msg="{{ namn | map(attribute='adress')
+        | map(attribute='gata') | join(', ') }}"
+

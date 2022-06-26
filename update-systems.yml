@@ -1,0 +1,17 @@
+- name: Uppdatera systemen
+  become: true
+  hosts: all
+  tasks:
+    - name: Uppdatera Debian-baserade system
+      when: ansible_os_family == 'Debian'
+      apt:
+        update_cache: yes
+        upgrade: dist
+
+    - name: Uppdatera RedHat-baserade system
+      when: ansible_os_family == 'RedHat'
+      dnf:
+        name:  "*"
+        state: latest
+        update_cache: yes
+        update_only: yes

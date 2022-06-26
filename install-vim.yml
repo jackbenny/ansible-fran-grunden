@@ -1,0 +1,8 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: Install vim
+      package:
+        name: vim
+        state: present
+

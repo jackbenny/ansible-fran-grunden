@@ -1,0 +1,10 @@
+{% for item in namn %}
+{% if item == "Joakim" %}
+ * {{ item }} är deras farbror
+{% elif "tte" in item %}
+ * {{ item }} bor med {{ "kalle anka"|title }}
+{% else %}
+ * {{ item }}
+{% endif %}
+{% endfor %}
+

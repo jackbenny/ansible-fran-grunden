@@ -1,0 +1,12 @@
+- name: Min första Play
+  hosts: ankeborg
+  become: true
+  tasks:
+    - name: Skapa användaren Kalle
+      user:
+        name: kalle
+        password: "$6$WAFtsM1BDHKlAGcF$jyMA41xQONrF0y\
+          /EuydPutK.CfVCJzfIzdb8qnw.Q75oOMUMrUoNSXJ2r\
+          tzwvTjX2xAmz0FxUy51vS2tc8zVs/"
+        shell: /bin/bash
+        create_home: yes

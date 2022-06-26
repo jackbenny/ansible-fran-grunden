@@ -1,0 +1,34 @@
+- name: Install Postfix and s-nail
+  package:
+    state: present
+    name: "{{ item }}"
+  with_items:
+    - postfix
+    - s-nail
+  notify: Activate and restart Postfix
+
+- name: Configure Postfix
+  template:
+    src: main.cf.j2
+    dest: /etc/postfix/main.cf
+  notify: Activate and restart Postfix
+
+- name: Copy Postfix authentication
+  template:
+    src: sasl_passwd.j2
+    dest: /etc/postfix/sasl_passwd
+    mode: 0600
+  notify: Generate SASL
+
+- name: Copy alisases
+  copy:
+    src: aliases
+    dest: /etc/aliases
+  notify: Generate aliases
+
+- name: Copy sender_canonical
+  template:
+    src: sender_canonical.j2
+    dest: /etc/postfix/sender_canonical
+  notify: Generate sender_canonical
+

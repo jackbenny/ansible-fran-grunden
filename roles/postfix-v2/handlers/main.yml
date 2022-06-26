@@ -1,0 +1,18 @@
+- name: Activate and restart Postfix
+  service:
+    name: postfix
+    enabled: yes
+    state: restarted
+
+- name: Generate SASL
+  command:
+    cmd: /usr/sbin/postmap /etc/postfix/sasl_passwd
+
+- name: Generate aliases
+  command:
+    cmd: /usr/sbin/postalias /etc/aliases
+
+- name: Generate sender_canonical
+  command:
+    cmd: /usr/sbin/postmap /etc/postfix/sender_canonical
+

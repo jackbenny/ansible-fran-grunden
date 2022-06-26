@@ -1,0 +1,28 @@
+- hosts: localhost
+  vars:
+    num1: 5
+    num2: 10
+    lista: [2, 2, 9, 1, 5, 2, 1]
+    namn: ["Knatte", "Fnatte", "Knatte", "Knatte"]
+
+  tasks:
+    - name: Utföra aritmetik
+      debug:
+        msg: "{{ num1 * num2 }}"
+
+    - name: Hitta minsta talet
+      debug:
+        msg: "{{ lista|min }}"
+
+    - name: Hitta största talet
+      debug:
+        msg: "{{ lista|max }}"
+
+    - name: Lista bara unika tal
+      debug:
+        msg: "{{ lista|unique }}"
+
+    - name: Unique fungerar även på strängar
+      debug:
+        msg: "{{ namn|unique }}"
+

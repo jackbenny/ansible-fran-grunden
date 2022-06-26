@@ -1,0 +1,9 @@
+- name: En annan uppgift
+  tags: y_test
+  command:
+    cmd: echo "Hej hej"
+
+- name: Testar variabel
+  debug:
+    var: testar
+

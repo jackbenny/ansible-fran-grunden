@@ -1,0 +1,8 @@
+- name: Extract test
+  hosts: localhost
+
+  tasks:
+  - name: Lista värdnamnen
+    debug:
+      msg: "{{ groups['ankeborg'] }}"
+

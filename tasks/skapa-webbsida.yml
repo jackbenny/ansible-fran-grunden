@@ -1,0 +1,16 @@
+- name: Ta bort eventuell exempelsida
+  tags:
+    - index
+    - remove
+  file:
+    path: /var/www/html/index.html
+    state: absent
+
+- name: Kopiera PHP-filen till värdarna
+  tags:
+    - index
+    - copy
+  copy:
+    src: ../files/index.php
+    dest: /var/www/html/index.php
+

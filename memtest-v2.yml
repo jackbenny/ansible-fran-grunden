@@ -1,0 +1,12 @@
+- name: Kör ett kommando om mer än 1500 mb ledigt minne
+  hosts: ankeborg
+  tasks:
+    - name: Kör echo
+      when: ansible_memfree_mb >= 1500
+      command:
+        cmd: echo "Bara ett test"
+      register: utdata
+
+    - name: Skriv ut utdata
+      debug:
+        var: utdata.stdout_lines

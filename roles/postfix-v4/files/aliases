@@ -1,0 +1,14 @@
+postmaster: root
+nobody: root
+hostmaster: root
+usenet: root
+news: root
+webmaster: root
+www: root
+ftp: root
+abuse: root
+noc: root
+security: root
+root: jake
+jake: vm-mail@cyberinfo.se
+
