@@ -1,0 +1,9 @@
+- name: Uppdatera APT
+  become: true
+  hosts: all,!win10
+  tasks:
+    - name: Uppdatera Debian-baserade system
+      apt:
+        update_cache: yes
+        upgrade: dist
+
